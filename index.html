@@ -16,13 +16,21 @@
 </head>
 <body>
   <div style="display: flex; align-items: center;">
-    <img src="https://www.bewajihealth.com/wp-content/uploads/2024/05/cropped-bewajihealth-logo.png" alt="BewajiHealth Logo" style="height: 48px; margin-right: 16px;">
     <div>
       <strong>RefExtractor</strong>
     </div>
   </div>
   <div style="margin-bottom: 1em; font-size: 0.95em; color: #444;">
     RefExtractor is developed by Temitayo Bewaji. <a href="https://www.bewajihealth.com" target="_blank">www.bewajihealth.com</a>
+  </div>
+  <div style="background: #f7f9fa; border-radius: 8px; padding: 1em 1.5em; margin-bottom: 1.5em; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: 600px;">
+    <strong style="font-size: 1.1em; color: #1a4a7a;">How to use:</strong>
+    <ol style="margin: 0.5em 0 0 1.2em; color: #222;">
+      <li>Click <b>Choose File</b> and select your PDF.</li>
+      <li>Click <b>Extract DOIs</b> to extract all DOIs and links from the PDF.</li>
+      <li>Download the CSV of all DOIs and links, or click <b>Download RIS</b> to fetch and download RIS records for all DOIs.</li>
+      <li style="color: #b36b00;">Note: Downloading RIS may take a while for large lists due to rate limits.</li>
+    </ol>
   </div>
   <input type="file" id="pdfFile" accept="application/pdf"><br>
   <button onclick="extractDOIs()">Extract DOIs</button>
