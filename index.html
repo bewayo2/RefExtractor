@@ -3,38 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <title>PDF DOI Extractor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Arial:wght@400;600&family=Helvetica:wght@400;600&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     // Set the workerSrc for pdf.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   </script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 2em; }
-    input, button { margin: 0.5em 0; }
-    #output { margin-top: 1em; }
+    :root {
+      --brand-blue: #2458a9;
+      --brand-gold: #a97524;
+      --brand-purple: #a9249b;
+      --brand-green: #24a932;
+    }
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      margin: 2em;
+      background: #f5f7fa;
+      color: #222;
+    }
+    .app-title {
+      font-family: 'Montserrat', Futura, Arial, sans-serif;
+      font-size: 2.3em;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--brand-blue);
+      margin-bottom: 0.1em;
+    }
+    .credit {
+      margin-bottom: 1em;
+      font-size: 1em;
+      color: #444;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .instructions {
+      background: #f7f9fa;
+      border-radius: 8px;
+      padding: 1em 1.5em;
+      margin-bottom: 1.5em;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      max-width: 600px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .instructions strong {
+      font-size: 1.1em;
+      color: var(--brand-blue);
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    .modern-btn {
+      background: var(--brand-blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.65em 1.5em;
+      font-size: 1em;
+      font-weight: 600;
+      margin: 0.5em 0.5em 0.5em 0;
+      box-shadow: 0 2px 8px rgba(36,88,169,0.07);
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    .modern-btn:disabled {
+      background: #b3c2d6;
+      color: #f5f7fa;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .modern-btn:hover:not(:disabled) {
+      background: var(--brand-purple);
+      box-shadow: 0 4px 16px rgba(36,88,169,0.13);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .modern-btn:active:not(:disabled) {
+      background: var(--brand-green);
+    }
+    .file-input {
+      display: inline-block;
+      margin-bottom: 1em;
+      font-size: 1em;
+      padding: 0.5em 0.7em;
+      border-radius: 6px;
+      border: 1px solid #b3c2d6;
+      background: #fff;
+      color: #222;
+      outline: none;
+      transition: border 0.18s;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .file-input:focus {
+      border: 1.5px solid var(--brand-blue);
+    }
+    #output {
+      margin-top: 1.5em;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      padding: 1.2em 1.5em;
+      max-width: 700px;
+      word-break: break-all;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    ol li {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 1em;
+    }
+    .warning {
+      color: var(--brand-gold);
+      font-weight: 600;
+    }
+    a {
+      color: var(--brand-purple);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+    a:hover {
+      color: var(--brand-green);
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <div style="display: flex; align-items: center;">
-    <div>
-      <strong>RefExtractor</strong>
-    </div>
+  <div style="display: flex; align-items: center; margin-bottom: 0.5em;">
+    <div class="app-title">RefExtractor</div>
   </div>
-  <div style="margin-bottom: 1em; font-size: 0.95em; color: #444;">
+  <div class="credit">
     RefExtractor is developed by Temitayo Bewaji. <a href="https://www.bewajihealth.com" target="_blank">www.bewajihealth.com</a>
   </div>
-  <div style="background: #f7f9fa; border-radius: 8px; padding: 1em 1.5em; margin-bottom: 1.5em; box-shadow: 0 1px 4px rgba(0,0,0,0.04); max-width: 600px;">
-    <strong style="font-size: 1.1em; color: #1a4a7a;">How to use:</strong>
+  <div class="instructions">
+    <strong>How to use:</strong>
     <ol style="margin: 0.5em 0 0 1.2em; color: #222;">
       <li>Click <b>Choose File</b> and select your PDF.</li>
       <li>Click <b>Extract DOIs</b> to extract all DOIs and links from the PDF.</li>
       <li>Download the CSV of all DOIs and links, or click <b>Download RIS</b> to fetch and download RIS records for all DOIs.</li>
-      <li style="color: #b36b00;">Note: Downloading RIS may take a while for large lists due to rate limits.</li>
+      <li class="warning">Note: Downloading RIS may take a while for large lists due to rate limits.</li>
     </ol>
   </div>
-  <input type="file" id="pdfFile" accept="application/pdf"><br>
-  <button onclick="extractDOIs()">Extract DOIs</button>
-  <button id="downloadRisBtn" onclick="downloadRIS()" disabled>Download RIS</button>
+  <input type="file" id="pdfFile" accept="application/pdf" class="file-input"><br>
+  <button class="modern-btn" onclick="extractDOIs()">Extract DOIs</button>
+  <button class="modern-btn" id="downloadRisBtn" onclick="downloadRIS()" disabled>Download RIS</button>
   <div id="output"></div>
   <script>
     let lastExtractedDois = [];
